@@ -136,7 +136,7 @@ $bp-lg: 600px;
   text-transform: uppercase;
   color: white;
   background-color: black;
-  border: none;
+  border-radius: 50px;
 
   &:hover {
     background-color: lighten(black, 5%);

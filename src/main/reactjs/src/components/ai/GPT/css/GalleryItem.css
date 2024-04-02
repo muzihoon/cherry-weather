@@ -116,7 +116,7 @@
   text-transform: uppercase;
   color: white;
   background-color: black;
-  border: none;
+  border-radius: 50px;
 }
 .btn:hover {
   background-color: #0d0d0d;
