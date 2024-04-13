@@ -23,9 +23,9 @@ public class RedisConfig {
 
     private final RedisProperties redisProperties;
     private List<String> clusterNodes = Arrays.asList(
-            "redisc-lgha6.vpc-cdb.ntruss.com:6379",
-            "redisc-lgha9.vpc-cdb.ntruss.com:6379",
-            "redisc-lghac.vpc-cdb.ntruss.com:6379"
+            "clustercfg.cherryweather-redis.cebcnl.memorydb.ap-northeast-2.amazonaws.com:6379",
+            "clustercfg.cherryweather-redis.cebcnl.memorydb.ap-northeast-2.amazonaws.com:6379",
+            "clustercfg.cherryweather-redis.cebcnl.memorydb.ap-northeast-2.amazonaws.com:6379"
     );
 
 
@@ -49,9 +49,9 @@ public class RedisConfig {
     public LettuceConnectionFactory redisConnectionFactory() {
         // 클러스터 노드 설정
         List<String> clusterNodes = Arrays.asList(
-                "redisc-lgha6.vpc-cdb.ntruss.com:6379",
-                "redisc-lgha9.vpc-cdb.ntruss.com:6379",
-                "redisc-lghac.vpc-cdb.ntruss.com:6379"
+                "clustercfg.cherryweather-redis.cebcnl.memorydb.ap-northeast-2.amazonaws.com:6379",
+                "clustercfg.cherryweather-redis.cebcnl.memorydb.ap-northeast-2.amazonaws.com:6379",
+                "clustercfg.cherryweather-redis.cebcnl.memorydb.ap-northeast-2.amazonaws.com:6379"
         );
 
         // RedisClusterConfiguration 객체 생성
