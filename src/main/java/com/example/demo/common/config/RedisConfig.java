@@ -22,44 +22,42 @@ import java.util.List;
 public class RedisConfig {
 
     private final RedisProperties redisProperties;
-    private List<String> clusterNodes = Arrays.asList(
-            "clustercfg.cherryweather-redis.cebcnl.memorydb.ap-northeast-2.amazonaws.com:6379",
-            "clustercfg.cherryweather-redis.cebcnl.memorydb.ap-northeast-2.amazonaws.com:6379",
-            "clustercfg.cherryweather-redis.cebcnl.memorydb.ap-northeast-2.amazonaws.com:6379"
-    );
-
-
-
-//    @Bean
-//    public LettuceConnectionFactory redisConnectionFactory() {
-//        String host = redisProperties.getHost();
-//        int port = redisProperties.getPort();
-//        String password = redisProperties.getPassword();
-//
-//        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(host, port );
-//
-//        if (password != null && !password.isEmpty()) {
-//            redisStandaloneConfiguration.setPassword(RedisPassword.of(password));
-//        }
-//
-//        return new LettuceConnectionFactory(redisStandaloneConfiguration);
-//    }
 
     @Bean
     public LettuceConnectionFactory redisConnectionFactory() {
-        // 클러스터 노드 설정
-        List<String> clusterNodes = Arrays.asList(
-                "clustercfg.cherryweather-redis.cebcnl.memorydb.ap-northeast-2.amazonaws.com:6379",
-                "clustercfg.cherryweather-redis.cebcnl.memorydb.ap-northeast-2.amazonaws.com:6379",
-                "clustercfg.cherryweather-redis.cebcnl.memorydb.ap-northeast-2.amazonaws.com:6379"
-        );
+        String host = redisProperties.getHost();
+        int port = redisProperties.getPort();
+        String password = redisProperties.getPassword();
+        String user = redisProperties.getUser();
 
-        // RedisClusterConfiguration 객체 생성
-        RedisClusterConfiguration redisClusterConfiguration = new RedisClusterConfiguration(clusterNodes);
+        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(host, port);
 
-        // LettuceConnectionFactory 생성
-        return new LettuceConnectionFactory(redisClusterConfiguration);
+        if (user != null && !user.isEmpty()) {
+            redisStandaloneConfiguration.setUsername(user);
+        }
+
+        if (password != null && !password.isEmpty()) {
+            redisStandaloneConfiguration.setPassword(RedisPassword.of(password));
+        }
+
+        return new LettuceConnectionFactory(redisStandaloneConfiguration);
     }
+
+//    @Bean
+//    public LettuceConnectionFactory redisConnectionFactory() {
+//        // 클러스터 노드 설정
+//        List<String> clusterNodes = Arrays.asList(
+//                "clustercfg.cherryweather-redis.cebcnl.memorydb.ap-northeast-2.amazonaws.com:6379",
+//                "clustercfg.cherryweather-redis.cebcnl.memorydb.ap-northeast-2.amazonaws.com:6379",
+//                "clustercfg.cherryweather-redis.cebcnl.memorydb.ap-northeast-2.amazonaws.com:6379"
+//        );
+//
+//        // RedisClusterConfiguration 객체 생성
+//        RedisClusterConfiguration redisClusterConfiguration = new RedisClusterConfiguration(clusterNodes);
+//
+//        // LettuceConnectionFactory 생성
+//        return new LettuceConnectionFactory(redisClusterConfiguration);
+//    }
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate() {
