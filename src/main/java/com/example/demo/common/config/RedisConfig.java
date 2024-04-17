@@ -32,13 +32,13 @@ public class RedisConfig {
 
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(host, port);
 
-        if (user != null && !user.isEmpty()) {
-            redisStandaloneConfiguration.setUsername(user);
-        }
-
-        if (password != null && !password.isEmpty()) {
-            redisStandaloneConfiguration.setPassword(RedisPassword.of(password));
-        }
+//        if (user != null && !user.isEmpty()) {
+//            redisStandaloneConfiguration.setUsername(user);
+//        }
+//
+//        if (password != null && !password.isEmpty()) {
+//            redisStandaloneConfiguration.setPassword(RedisPassword.of(password));
+//        }
 
         return new LettuceConnectionFactory(redisStandaloneConfiguration);
     }
